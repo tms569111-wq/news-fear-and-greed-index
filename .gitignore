@@ -1,41 +1,43 @@
-# OS / IDE
+# OS / Editor
 .DS_Store
-.idea/
+Thumbs.db
 .vscode/
-*.iml
+.idea/
+
+# Secrets
+.env
+*.env
+비번.txt
+*password*
+*secret*
+*.key
+*.pem
+application-prod.yml
+application-secret.yml
 
 # Java / Spring
 build/
 target/
 .gradle/
-out/
 *.class
 *.jar
 *.war
+*.ear
 
 # Python
 __pycache__/
 *.pyc
 .venv/
 venv/
-env/
-
-# Secrets
-.env
-*.secret
-*password*
-*비번*
-application-secret.yml
-application-prod-secret.yml
+.ipynb_checkpoints/
 
 # Logs
 *.log
-logs/
 
-# Data dumps
+# Database
 *.sqlite
 *.db
 
-# Personal documents
-*원본보고서*
-*개인정보*
+# Temporary
+tmp/
+temp/
