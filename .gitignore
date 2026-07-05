@@ -1,0 +1,41 @@
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.iml
+
+# Java / Spring
+build/
+target/
+.gradle/
+out/
+*.class
+*.jar
+*.war
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Secrets
+.env
+*.secret
+*password*
+*비번*
+application-secret.yml
+application-prod-secret.yml
+
+# Logs
+*.log
+logs/
+
+# Data dumps
+*.sqlite
+*.db
+
+# Personal documents
+*원본보고서*
+*개인정보*

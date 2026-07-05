@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-07-05T11:20:54.690388",
+  "project": "News-Fear-and-Greed-index",
+  "included_uploaded_files": [
+    "legacy/code/고친코드_최종.ipynb",
+    "legacy/data/ugrp_7월1일부터_11월25일까지.xlsx",
+    "legacy/data/ugrp_7월1일부터_12월15일까지.xlsx",
+    "legacy/report/졸업프로젝트_블라인드버전.pdf"
+  ],
+  "missing_uploaded_files": [],
+  "excluded_reason": "비밀번호 파일과 개인정보 포함 가능 원본 문서는 제외"
+}

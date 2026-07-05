@@ -1,0 +1,4 @@
+﻿asset_code,target_date,article_count,positive_article_count,negative_article_count,neutral_article_count,avg_sentiment_score,fear_greed_score,index_label,buy_signal,sell_signal
+005930,2023-12-01,100,63,25,12,0.632,63.20,GREED,false,false
+005930,2023-12-02,100,58,31,11,0.581,58.10,GREED,false,false
+BTC,2023-12-01,100,42,47,11,0.421,42.10,FEAR,true,false
