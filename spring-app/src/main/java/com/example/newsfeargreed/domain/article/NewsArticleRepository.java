@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NewsArticleRepository extends JpaRepository<NewsArticle, Long> {
 
-    List<NewsArticle> findByAssetIdOrderByPublishedAtDesc(Long assetId);
+    List<NewsArticle> findTop100ByAssetIdOrderByPublishedAtDesc(Long assetId);
 }

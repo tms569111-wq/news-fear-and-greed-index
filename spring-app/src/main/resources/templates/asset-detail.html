@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="|${asset.name} 뉴스공탐지수|">종목 상세</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+</head>
+<body>
+<main class="container">
+    <a class="back-link" th:href="@{/}">← 종목 목록</a>
+    <header class="detail-header">
+        <div>
+            <p class="eyebrow" th:text="|${asset.marketType} · ${asset.code}|">KOSPI · 005930</p>
+            <h1 th:text="${asset.name}">삼성전자</h1>
+        </div>
+        <span class="category" th:text="${asset.category}">LARGE_CAP</span>
+    </header>
+
+    <section class="panel">
+        <div class="panel-title">
+            <h2>날짜별 뉴스공탐지수</h2>
+            <span>0 공포 · 50 중립 · 100 탐욕</span>
+        </div>
+        <div class="chart-box" th:if="${!#lists.isEmpty(asset.indices)}">
+            <canvas id="indexChart" aria-label="날짜별 뉴스공탐지수 차트"></canvas>
+        </div>
+        <p class="empty" th:if="${#lists.isEmpty(asset.indices)}">아직 적재된 지수 데이터가 없습니다.</p>
+
+        <div class="table-wrap" th:if="${!#lists.isEmpty(asset.indices)}">
+            <table>
+                <thead>
+                <tr><th>날짜</th><th>지수</th><th>상태</th><th>기사</th><th>긍정</th><th>부정</th><th>중립</th></tr>
+                </thead>
+                <tbody>
+                <tr class="index-row" th:each="index : ${asset.indices}"
+                    th:attr="data-date=${index.targetDate},data-score=${index.fearGreedScore}">
+                    <td th:text="${index.targetDate}">2026-07-10</td>
+                    <td class="score" th:text="${index.fearGreedScore}">50</td>
+                    <td><span class="label" th:text="${index.indexLabel}">NEUTRAL</span></td>
+                    <td th:text="${index.articleCount}">0</td>
+                    <td th:text="${index.positiveArticleCount}">0</td>
+                    <td th:text="${index.negativeArticleCount}">0</td>
+                    <td th:text="${index.neutralArticleCount}">0</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-title">
+            <h2>관련 기사</h2>
+            <span th:text="|최근 ${#lists.size(asset.articles)}건|">최근 0건</span>
+        </div>
+        <div class="article-list" th:if="${!#lists.isEmpty(asset.articles)}">
+            <article th:each="article : ${asset.articles}">
+                <div class="article-meta">
+                    <span th:text="${article.press ?: '언론사 미제공'}">언론사</span>
+                    <time th:text="${article.publishedAt}">2026-07-10</time>
+                    <span class="label" th:text="${article.sentimentLabel}">NEUTRAL</span>
+                </div>
+                <h3>
+                    <a th:if="${article.url != null}" th:href="${article.url}" target="_blank" rel="noopener"
+                       th:text="${article.title}">기사 제목</a>
+                    <span th:if="${article.url == null}" th:text="${article.title}">기사 제목</span>
+                </h3>
+                <p th:text="${article.summary}">기사 요약</p>
+            </article>
+        </div>
+        <p class="empty" th:if="${#lists.isEmpty(asset.articles)}">아직 적재된 기사 데이터가 없습니다.</p>
+    </section>
+</main>
+
+<script>
+window.addEventListener('load', () => {
+    const canvas = document.getElementById('indexChart');
+    if (!canvas || typeof Chart === 'undefined') return;
+    const rows = Array.from(document.querySelectorAll('.index-row'));
+    new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels: rows.map(row => row.dataset.date),
+            datasets: [{
+                label: '뉴스공탐지수',
+                data: rows.map(row => Number(row.dataset.score)),
+                borderColor: '#ff6b35',
+                backgroundColor: 'rgba(255, 107, 53, 0.14)',
+                fill: true,
+                tension: 0.25
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { y: { min: 0, max: 100 } }
+        }
+    });
+});
+</script>
+</body>
+</html>

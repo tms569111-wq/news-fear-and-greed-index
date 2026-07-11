@@ -30,6 +30,7 @@ __pycache__/
 .venv/
 venv/
 .ipynb_checkpoints/
+python-pipeline/output/*.csv
 
 # Logs
 *.log
