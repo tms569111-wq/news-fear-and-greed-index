@@ -1,0 +1,5 @@
+code,name,market_type,category,search_keyword,active
+005930,삼성전자,KOSPI,LARGE_CAP,삼성전자,true
+BTC,비트코인,CRYPTO,CRYPTO,비트코인,true
+KOSPI,코스피,INDEX,INDEX,코스피,true
+344860,이노진,KOSDAQ,SMALL_CAP,이노진,false
